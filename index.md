@@ -1,5 +1,3 @@
-DevOps enthusiast.
+Hello DevOps enthusiasts!!
 
-Learning new tools used in DevOps landscape.
-
-Sharing the same so that my learnings might help others.
+Myself Sandeep, sharing my DevOps learnings to the community.
