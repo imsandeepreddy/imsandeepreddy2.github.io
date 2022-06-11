@@ -49,7 +49,7 @@ kubeadm version
 
 ```
 
-## K8s cluster bootstrap:
+## K8s cluster bootstrap
 
 Now we are ready to get a real Kubernetes cluster up and running!
 
