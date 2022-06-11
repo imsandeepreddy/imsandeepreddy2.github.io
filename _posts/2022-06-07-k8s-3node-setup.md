@@ -1,6 +1,5 @@
 # Kubernetes 3 node setup
 ## Docker setup:
-### Prerequisites:
 3 nodes(servers) with Ubuntu 18.04 Bionic Beaver LTS.
 
 One server being “Kube Master” and remaining 2 servers as “Kube Node 1” and “Kube Node 2”.
@@ -11,6 +10,7 @@ We will be installing Docker on our three servers in preparation for standing up
 
 **Commands:**
 
+```sh
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -sudo add-apt-repository \”deb [arch=amd64] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) \stable”
 
 sudo apt-get update
@@ -19,21 +19,22 @@ sudo apt-get install -y docker-ce=18.06.1~ce~3–0~ubuntu
 
 sudo apt-mark hold docker-ce
 
-You can verify that docker is working by running this command:
-
 sudo docker version
+
+```
 
 ## K8s setup
 Now that Docker is installed, we are ready to install the Kubernetes components.
 
 Install Kubeadm, Kubelet, and Kubectl on all three playground servers.
 
-After this bootstrap the cluster. Here are the commands used to install the Kubernetes components in this lesson. Run these on all three servers.
+After this bootstrap the cluster. Here are the commands used to install the Kubernetes components. Run these on all three servers.
 
 **NOTE:** There are some issues being reported when installing version 1.12.2–00 from the Kubernetes ubuntu repositories. You can work around this by using version 1.52.7–00 for kubelet, kubeadm, and kubectl.
 
 **Commands:**
 
+```sh
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add —
 
 cat << EOF | sudo tee /etc/apt/sources.list.d/kubernetes.listdeb https://apt.kubernetes.io/ kubernetes-xenial main EOF
@@ -44,9 +45,9 @@ sudo apt-get install -y kubelet=1.15.7–00 kubeadm=1.15.7–00 kubectl=1.15.7�
 
 sudo apt-mark hold kubelet kubeadm kubectl
 
-After installing these components, verify that Kubeadm is working by getting the version info.
-
 kubeadm version
+
+```
 
 ## K8s cluster bootstrap:
 
@@ -58,30 +59,36 @@ Here are the **commands** used in this lesson:
 
 On the Kube master node, initialize the cluster:
 
+```sh
 sudo kubeadm init — pod-network-cidr=10.244.0.0/16
+```
 
 That command may take a few minutes to complete.When it is done, set up the local kubeconfig:
 
+```sh
 mkdir -p $HOME/.kube
 
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
 
 Verify that the cluster is responsive and that Kubectl is working:
 
+```sh
 kubectl version
-
+```
 You should get Server Version as well as Client Version . It should look something like this:
 
 The kubeadm init command should output a kubeadm join command containing a token and hash. Copy that command and run it with sudo on both worker nodes. It should look something like this:
 
+```sh
 sudo kubeadm join $some_ip:6443 — token $some_token — discovery-token-ca-cert-hash $some_hash
-
+```
 Verify that all nodes have successfully joined the cluster:
-
+```sh
 kubectl get nodes
-
+```
 You should see all three of your nodes listed. It should look something like this:
 
 NAME STATUS ROLES AGE VERSION
