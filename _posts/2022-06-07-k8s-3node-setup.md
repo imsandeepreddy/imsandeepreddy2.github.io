@@ -89,11 +89,7 @@ Verify that all nodes have successfully joined the cluster:
 ```sh
 kubectl get nodes
 ```
-You should see all three of your nodes listed. It should look something like this:
-
-NAME STATUS ROLES AGE VERSION
-
-wboyd1c.mylabserver.com NotReady master 5m17s v1.12.2wboyd2c.mylabserver.com NotReady <none> 53s v1.12.2wboyd3c.mylabserver.com NotReady <none> 31s v1.12.2
+You should see all three of your nodes listed. 
 
 **Note:** The nodes are expected to have a STATUS of NotReady at this point.
 
@@ -103,36 +99,25 @@ Once the Kubernetes cluster is set up, we still need to configure cluster networ
 
 We will walk through the process of configuring a cluster network using Flannel. You can find more information on Flannel at the official site: https://coreos.com/flannel/docs/latest/.
 
-** Commands:**
+**Commands:**
 
 On all three nodes, run the following:
-
+```sh
 echo “net.bridge.bridge-nf-call-iptables=1” | sudo tee -a /etc/sysctl.conf
 
 sudo sysctl -p
 
-Install Flannel in the cluster by running this only on the Master node:
-
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 
-Verify that all the nodes now have a STATUS of Ready :
-
 kubectl get nodes
-
-You should see all three of your servers listed, and all should have a STATUS of Ready .
-
-It should look something like this:
-
-NAME STATUS ROLES AGE VERSION
-
-wboyd1c.mylabserver.com Ready master 5m17s v1.12.2wboyd2c.mylabserver.com Ready <none> 53s v1.12.2wboyd3c.mylabserver.com Ready <none> 31s v1.12.2
+```
 
 **Note:** It may take a few moments for all nodes to enter the Ready status, so if they are not all Ready , wait a few moments and try again.
 
 It is also a good idea to verify that the Flannel pods are up and running. Run this command to get a list of system pods:
-
+```sh
 kubectl get pods -n kube-system
-
+```
 You should have three pods with flannel in the name, and all three should have a status of Running.
 
 ## Deploy sample microservices app on K8s cluster
@@ -146,19 +131,20 @@ We will also explore the application briefly in order to get a hands-on glimpse 
 Here are the **commands** used in the demonstration to deploy the Stan’s Robot Shop application:
 
 Clone the Git repository:
-
+```sh
 cd ~/git clone https://github.com/linuxacademy/robot-shop.git
-
+```
 Create a namespace and deploy the application objects to the namespace using the deployment descriptors from the Git repository:
-
+```sh
 kubectl create namespace robot-shop
 
 kubectl -n robot-shop create -f ~/robot-shop/K8s/descriptors/
-
+```
 Get a list of the application’s pods and wait for all of them to finish starting up:
-
+```sh
 kubectl get pods -n robot-shop -w
-
+```
 Once all the pods are up, you can access the application in a browser using the public IP of one of your Kubernetes servers and port 30080:
-
+```sh
 http://$kube_server_public_ip:30080
+```
