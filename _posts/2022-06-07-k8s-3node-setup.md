@@ -1,6 +1,6 @@
-## Kubernetes 3 node setup
-# Docker setup:
-# Prerequisites:
+# Kubernetes 3 node setup
+## Docker setup:
+### Prerequisites:
 3 nodes(servers) with Ubuntu 18.04 Bionic Beaver LTS.
 
 One server being “Kube Master” and remaining 2 servers as “Kube Node 1” and “Kube Node 2”.
@@ -9,7 +9,8 @@ The first step in setting up a new cluster is to install a container runtime suc
 
 We will be installing Docker on our three servers in preparation for standing up a Kubernetes cluster.
 
-Commands:
+**Commands:**
+
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -sudo add-apt-repository \”deb [arch=amd64] https://download.docker.com/linux/ubuntu \$(lsb_release -cs) \stable”
 
 sudo apt-get update
@@ -22,14 +23,16 @@ You can verify that docker is working by running this command:
 
 sudo docker version
 
-# K8s setup
+## K8s setup
 Now that Docker is installed, we are ready to install the Kubernetes components.
 
-I will guide you through the process of installing Kubeadm, Kubelet, and Kubectl on all three playground servers.
+Install Kubeadm, Kubelet, and Kubectl on all three playground servers.
 
-After this, you should be ready for the next step, which is to bootstrap the cluster. Here are the commands used to install the Kubernetes components in this lesson. Run these on all three servers.
+After this bootstrap the cluster. Here are the commands used to install the Kubernetes components in this lesson. Run these on all three servers.
 
-NOTE: There are some issues being reported when installing version 1.12.2–00 from the Kubernetes ubuntu repositories. You can work around this by using version 1.52.7–00 for kubelet, kubeadm, and kubectl.
+**NOTE:** There are some issues being reported when installing version 1.12.2–00 from the Kubernetes ubuntu repositories. You can work around this by using version 1.52.7–00 for kubelet, kubeadm, and kubectl.
+
+**Commands:**
 
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add —
 
@@ -45,13 +48,13 @@ After installing these components, verify that Kubeadm is working by getting the
 
 kubeadm version
 
-# K8s cluster bootstrap:
+## K8s cluster bootstrap:
 
 Now we are ready to get a real Kubernetes cluster up and running!
 
 Now we will bootstrap the cluster on the Kubemaster node. Then, we will join each of the two worker nodes to the cluster, forming an actual multi-node Kubernetes cluster.
 
-Here are the commands used in this lesson:
+Here are the **commands** used in this lesson:
 
 On the Kube master node, initialize the cluster:
 
@@ -85,15 +88,15 @@ NAME STATUS ROLES AGE VERSION
 
 wboyd1c.mylabserver.com NotReady master 5m17s v1.12.2wboyd2c.mylabserver.com NotReady <none> 53s v1.12.2wboyd3c.mylabserver.com NotReady <none> 31s v1.12.2
 
-Note: The nodes are expected to have a STATUS of NotReady at this point.
+**Note:** The nodes are expected to have a STATUS of NotReady at this point.
 
-# K8s cluster networking using flannel
+## K8s cluster networking using flannel
 
 Once the Kubernetes cluster is set up, we still need to configure cluster networking in order to make the cluster fully functional.
 
 We will walk through the process of configuring a cluster network using Flannel. You can find more information on Flannel at the official site: https://coreos.com/flannel/docs/latest/.
 
-Here are the commands :
+** Commands:**
 
 On all three nodes, run the following:
 
@@ -117,7 +120,7 @@ NAME STATUS ROLES AGE VERSION
 
 wboyd1c.mylabserver.com Ready master 5m17s v1.12.2wboyd2c.mylabserver.com Ready <none> 53s v1.12.2wboyd3c.mylabserver.com Ready <none> 31s v1.12.2
 
-Note: It may take a few moments for all nodes to enter the Ready status, so if they are not all Ready , wait a few moments and try again.
+**Note:** It may take a few moments for all nodes to enter the Ready status, so if they are not all Ready , wait a few moments and try again.
 
 It is also a good idea to verify that the Flannel pods are up and running. Run this command to get a list of system pods:
 
@@ -125,7 +128,7 @@ kubectl get pods -n kube-system
 
 You should have three pods with flannel in the name, and all three should have a status of Running.
 
-# Deploy sample microservices app on K8s cluster
+## Deploy sample microservices app on K8s cluster
 
 Kubernetes is a powerful tool for managing and deploying microservice applications.
 
@@ -133,7 +136,7 @@ Now we will deploy a microservice application consisting of multiple varied comp
 
 We will also explore the application briefly in order to get a hands-on glimpse of what a microservice application might look like, and how it might run in a Kubernetes cluster.
 
-Here are the commands used in the demonstration to deploy the Stan’s Robot Shop application:
+Here are the **commands** used in the demonstration to deploy the Stan’s Robot Shop application:
 
 Clone the Git repository:
 
