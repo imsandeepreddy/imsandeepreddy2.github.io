@@ -59,7 +59,16 @@ kubectl get po -A
 ```sh
 minikube stop
 
-minikube delete -all
+minikube delete --all
+```
+**Commands to install helm**
+```sh
+$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
+
+helm repo add argo https://argoproj.github.io/argo-helm
+helm install argocd argo/argo-cd --set server.service.type=LoadBalancer
 ```
 https://medium.com/geekculture/gitops-with-argo-cd-managing-kubernetes-application-using-git-and-argo-cd-42ed6879ab1e
 ```sh
@@ -71,5 +80,6 @@ kubectl get all -n argocd
 
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 
-
 ```
+https://levelup.gitconnected.com/gitops-ci-cd-using-github-actions-and-argocd-on-kubernetes-909d85d37746
+
