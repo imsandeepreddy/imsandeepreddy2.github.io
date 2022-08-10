@@ -18,7 +18,7 @@ linkedin_username: "sandeep-reddy-00a8b839"
 #########################################################################################
 ######### Nothing below needs to be changed (unless you know what you're doing) #########
 #########################################################################################
-theme: jekyll-theme-cayman
+theme: "minima"
 
 rss: rss
 
