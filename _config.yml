@@ -20,7 +20,7 @@ linkedin_username: "sandeep-reddy-00a8b839"
 #########################################################################################
 theme: "minima"
 
-rss: rss
+#rss: rss
 
 kramdown:
   syntax_highlighter_opts:
