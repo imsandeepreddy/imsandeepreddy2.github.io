@@ -17,4 +17,4 @@ Docker
 
 Kubernetes
 
-Cloud providers like - AWS, GCP
+Cloud providers like - AWS, GCP🤓😎⭐🌟
