@@ -1,6 +1,7 @@
-# Hello World!!
+# Sandeep Reddy
 
-## Myself Sandeep, sharing my DevOps learnings to the community.
+## About me
+Sandeep Reddy M, DevOps/Cloud enthusiast.
 
 Professionally DevOps Engineer interested in DevOps style of automating Software Configuration Management, Version Control, Build and Release management.
 
