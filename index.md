@@ -4,7 +4,7 @@
 
 Sandeep Reddy M, DevOps/Cloud enthusiast🤓.
 
-![alt text](https://github.com/imsandeepreddy/imsandeepreddy.github.io/blob/main/_images/SandeepReddy.png?raw=true)
+![Sandeep Reddy](https://github.com/imsandeepreddy/imsandeepreddy.github.io/blob/main/_images/SandeepReddy.png?raw=true)
 
 - Professionally DevOps engineer with expertise in areas of Software Configuration Management, Version Control, Build and Release management.
 - Hands on experience in source code management, branch creation & repositories management using **GIT**.
