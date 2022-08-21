@@ -1,6 +1,6 @@
 # DevOps CICD pipeline with GitOps, docker, helm, argocd, kubernetes
 
-![alt text](https://github.com/imsandeepreddy/imsandeepreddy.github.io/blob/main/_images/CICD.png?raw=true)
+![CICD](https://github.com/imsandeepreddy/imsandeepreddy.github.io/blob/main/_images/CICD.png?raw=true)
 
 ## Prerequisites:
 ### Install Docker:
